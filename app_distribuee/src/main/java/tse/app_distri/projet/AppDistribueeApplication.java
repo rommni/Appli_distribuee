@@ -1,4 +1,4 @@
-package com.example.demo;
+package tse.app_distri.projet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
