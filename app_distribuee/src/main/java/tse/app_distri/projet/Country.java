@@ -2,6 +2,9 @@ package tse.app_distri.projet;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class Country implements Serializable {
 
 	//bi-directional many-to-one association to Location
 	@OneToMany(mappedBy="country")
+	@JsonIgnore
 	private List<Location> locations;
 
 	public Country() {
