@@ -2,6 +2,9 @@ package tse.app_distri.projet;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class Job implements Serializable {
 
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="job")
+	@JsonIgnore
 	private List<Employee> employees;
 
 	//bi-directional many-to-one association to JobHistory
