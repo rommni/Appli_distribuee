@@ -15,6 +15,7 @@ public class EmployeeDTOController {
 
 	@GetMapping(path="/list")
 	public @ResponseBody Iterable<EmployeeDTO> getAllEmployee(){
+		
 		return employeeDTORepository.findAll();
 	}
 }
