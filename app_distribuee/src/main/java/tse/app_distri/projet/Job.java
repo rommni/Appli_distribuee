@@ -40,6 +40,7 @@ public class Job implements Serializable {
 
 	//bi-directional many-to-one association to JobHistory
 	@OneToMany(mappedBy="job")
+	@JsonIgnore
 	private List<JobHistory> jobHistories;
 
 	public Job() {
