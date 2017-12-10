@@ -45,7 +45,7 @@ public class JobController {
 		return "Updated";
 	}
 	@PostMapping(path="/above")
-	public @ResponseBody Iterable<Job> getJobsAbove(@RequestParam String amount){
+	public @ResponseBody Iterable<Job> POSTgetJobsAbove(@RequestParam String amount){
 		List<Job> jobs = (List<Job>) jobRepository.findAll();
 		Iterator<Job> it = jobs.iterator();
 		while(it.hasNext())
@@ -63,7 +63,6 @@ public class JobController {
 	    });
 		return jobs;
 	}
-
  
 
 }
