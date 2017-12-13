@@ -4,14 +4,19 @@ import static org.testng.Assert.assertEquals;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.Provider;
+import org.modelmapper.spring.SpringIntegration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 public class EmployeeDTO {
-
+	
+	
 	private String firstName;
 	private String lastName;
 	private String departmentName;
 	public EmployeeDTO() {
-		mapExplicitly();
+		
 	}
 	public String getFirstName() {
 		return firstName;
@@ -32,24 +37,4 @@ public class EmployeeDTO {
 		this.departmentName = departmentName;
 	}
 
-	static void mapExplicitly() {
-	    Employee employee = new Employee();
-	    ModelMapper modelMapper = new ModelMapper();
-	    modelMapper.addMappings(new PropertyMap<Employee, EmployeeDTO>() {
-	      @Override
-	      protected void configure() {
-	        map().setDepartmentName(source.getDepartment().getDepartmentName());
-	        map().setFirstName(source.getFirstName());
-	        map().setLastName(source.getLastName());
-	      }
-	    });
-
-	    EmployeeDTO employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
-	    assertEmployeeEqual(employee, employeeDTO);
-	  }
-	static void assertEmployeeEqual(Employee employee, EmployeeDTO employeeDTO) {
-	    assertEquals(employeeDTO.getFirstName(), employee.getFirstName());
-	    assertEquals(employeeDTO.getLastName(), employee.getLastName());
-	    assertEquals(employeeDTO.getDepartmentName(), employee.getDepartment().getDepartmentName());
-	}
 }
