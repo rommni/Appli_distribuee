@@ -11,11 +11,13 @@
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Country Name</th>
+				<th scope="col">Actions</th>
 			</tr>
 		</thead>
 		<th:block th:each="country : ${countries}">
 		    <tr>
-		        <th th:text="${country.countryName}" scope="row">test test</th>
+		        <th th:text="${country.countryName}" scope="row"></th>
+		  		<th><a th:href="@{/country/update(id=${country.countryId})}" th:text="Update"></a></th>
 		    </tr>
 		</th:block>
 	

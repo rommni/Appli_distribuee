@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+<meta charset="UTF-8" />
+<title th:text="${'Edit - ' + country.countryName}"></title>
+</head>
+<body>
+<h1 th:text="${'Edit - ' + country.countryName}"></h1>
+
+<form action="#" th:action="@{#}" th:object="${country}" method="post">
+      
+          <label class="control-label" for="countryName">Country Name <span class="required">*</span></label>
+          <input type="text" th:field="*{countryName}" required="required" />
+      
+      <input type="submit" value="send"/>
+      
+    <input type="hidden" th:field="*{countryId}" />
+</form>
+
+</body>
+</html>

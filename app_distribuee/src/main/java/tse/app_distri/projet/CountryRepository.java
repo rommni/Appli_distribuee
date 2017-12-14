@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
 
 	Page<Country> findAll(Pageable pageable);
+	Country findByCountryId(String countryId);
 
 	
 }
