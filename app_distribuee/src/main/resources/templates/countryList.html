@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+<meta charset="UTF-8" />
+<title>Country List</title>
+</head>
+<body>
+	<h1>List of countries</h1>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Country Name</th>
+			</tr>
+		</thead>
+		<th:block th:each="country : ${countries}">
+		    <tr>
+		        <th th:text="${country.countryName}" scope="row">test test</th>
+		    </tr>
+		</th:block>
+	
+	</table>
+	
+	
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"  ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
+</body>
+</html>
