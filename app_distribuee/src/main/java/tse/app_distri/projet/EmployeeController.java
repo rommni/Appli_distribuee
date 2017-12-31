@@ -2,6 +2,7 @@ package tse.app_distri.projet;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -50,5 +51,18 @@ public class EmployeeController {
 		model.addAttribute("nameData", nameData);
 		return "employee/salaries";
 		
+	}
+	
+	@GetMapping(path="/decile")
+	public String plotSalariesByDecile(Model model){
+		Iterable<Employee> employees = employeeRepository.findAll();
+		Iterator<Employee> it = employees.iterator();
+		ArrayList<BigDecimal> salaries = new ArrayList<BigDecimal>();
+		while(it.hasNext()){
+			Employee e =it.next();
+			salaries.add(e.getSalary());
+		}
+		Collections.sort(salaries);
+		return "employee/salariesDecile";
 	}
 }

@@ -14,6 +14,7 @@ public class DepartmentController {
 	
 	@Autowired
 	private DepartmentRepository departmentRepository;
+	@Autowired
 	private LocationRepository locationRepository;
 	
 	@GetMapping(path="/list")
@@ -25,7 +26,7 @@ public class DepartmentController {
 	@GetMapping(path="/update")
 	public String update(Model model, @RequestParam long id){
 		model.addAttribute("department", departmentRepository.findByDepartmentId(id));
-		model.addAttribute("location", locationRepository.findByLocationId(departmentRepository.findByDepartmentId(id).getLocation().getLocationId()));
+		model.addAttribute("location", locationRepository.findOne(departmentRepository.findOne(id).getLocation().getLocationId()));
 		return "department/update";
 	}
 	
