@@ -26,14 +26,15 @@ public class DepartmentController {
 	@GetMapping(path="/update")
 	public String update(Model model, @RequestParam long id){
 		model.addAttribute("department", departmentRepository.findByDepartmentId(id));
-		model.addAttribute("location", locationRepository.findOne(departmentRepository.findOne(id).getLocation().getLocationId()));
+		model.addAttribute("location", locationRepository.findAll());
 		return "department/update";
 	}
 	
 	@PostMapping(path="/update")
-	public String updateAction(@RequestParam long id,  Department newDepartment ){
+	public String updateAction(@RequestParam long id,  Department newDepartment, long locationid){
 		Department department = departmentRepository.findByDepartmentId(id);
 		department.setDepartmentName(newDepartment.getDepartmentName());
+		department.setLocation(newDepartment.getLocation());
 		departmentRepository.save(department);
 		return "redirect:list";
 	}
