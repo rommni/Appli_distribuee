@@ -1,18 +1,21 @@
 package tse.app_distri.projet;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-
+import org.springframework.ui.Model;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping(path="/employee")
 public class EmployeeController {
 	
@@ -30,5 +33,19 @@ public class EmployeeController {
 		}
 		
 		return employees;
+	}
+	
+	@GetMapping(path="/salaries")
+	public String plotSalaries(Model model){
+		Iterable<Employee> employees = employeeRepository.findAll();
+		Iterator<Employee> it = employees.iterator();
+		ArrayList<BigDecimal> salaries = new ArrayList<BigDecimal>();
+		while(it.hasNext()){
+			Employee e = it.next();
+			salaries.add(e.getSalary());
+		}
+		model.addAttribute("salaries",salaries);
+		return "employee/salaries";
+		
 	}
 }
