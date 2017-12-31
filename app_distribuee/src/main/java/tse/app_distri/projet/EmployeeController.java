@@ -63,6 +63,7 @@ public class EmployeeController {
 			salaries.add(e.getSalary());
 		}
 		Collections.sort(salaries);
+		model.addAttribute("salaries",salaries);
 		return "employee/salariesDecile";
 	}
 }
