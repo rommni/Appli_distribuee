@@ -14,8 +14,8 @@
           <label class="control-label" for="departmentName">Department Name <span class="required">*</span></label>
           <input type="text" th:object="${department}" th:field="*{departmentName}" required="required" />
           
-          <label class="control-label" for="location">Location <span class="required">*</span></label>
-         <select th:field="*{location}" id="locationId" onChange="onstatechange(this)" class="infobox">
+          <label class="control-label" for="department.location">Location <span class="required">*</span></label>
+         <select th:field="*{location}" name="locationId" onChange="onstatechange(this)" class="infobox">
     <option th:each="locations : ${location}" th:value="${locations.locationId}" th:text="${locations.City}"></option>
 </select>
       

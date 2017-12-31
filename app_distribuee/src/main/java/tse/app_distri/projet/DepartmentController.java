@@ -31,7 +31,7 @@ public class DepartmentController {
 	}
 	
 	@PostMapping(path="/update")
-	public String updateAction(@RequestParam long id,  Department newDepartment, long locationid){
+	public String updateAction(@RequestParam long id,  Department newDepartment){
 		Department department = departmentRepository.findByDepartmentId(id);
 		department.setDepartmentName(newDepartment.getDepartmentName());
 		department.setLocation(newDepartment.getLocation());
