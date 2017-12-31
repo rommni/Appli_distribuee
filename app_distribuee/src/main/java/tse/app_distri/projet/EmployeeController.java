@@ -40,11 +40,14 @@ public class EmployeeController {
 		Iterable<Employee> employees = employeeRepository.findAll();
 		Iterator<Employee> it = employees.iterator();
 		ArrayList<BigDecimal> salaries = new ArrayList<BigDecimal>();
+		ArrayList<String> nameData = new ArrayList<String>();
 		while(it.hasNext()){
 			Employee e = it.next();
 			salaries.add(e.getSalary());
+			nameData.add(e.getFirstName()+" "+e.getLastName());
 		}
 		model.addAttribute("salaries",salaries);
+		model.addAttribute("nameData", nameData);
 		return "employee/salaries";
 		
 	}

@@ -12,6 +12,7 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script th:inline="javascript">
 var data = [[${salaries}]];
+var nameData = [[${nameData}]];
 
 var width = 1080, height =500;
 
@@ -32,12 +33,25 @@ var bar = chart.selectAll("g")
     .data(data)
   .enter().append("g")
     .attr("transform", function(d, i) { return "translate(" + (i * barWidth + 50) + ",0)"; });
+var div = d3.select("body").append("div")				
+			.style("opacity", 0);
 
 bar.append("rect")
     .attr("y", function(d) { return y(d); })
     .attr("height", function(d) { return height - y(d); })
     .attr("width", barWidth - 2)
-    .attr("fill", "blue");
+    .attr("fill", "blue")
+    .on("mouseover", function(d,i){
+    	div.transition()
+    		.duration(200)
+    		.style("opacity", .9);
+    	div.html("Employee : "+nameData[i]+ " => "+d+"€");
+    })
+    .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });
 
 
 chart.append("g")
