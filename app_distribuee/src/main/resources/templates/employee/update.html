@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${'Edit - ' + employee.firstName + ' ' + employee.lastName}"></title>
+<link rel="stylesheet"
+          href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<h1 th:text="${'Edit - ' + employee.firstName + ' ' + employee.lastName}"></h1>
+
+<form action="#" th:action="@{#}" th:object="${employee}" method="post">
+      
+          <label class="control-label" for="firstName">First Name <span class="required">*</span></label>
+          <input type="text" th:object="${employee}" th:field="*{firstName}" required="required" />
+          
+          <label class="control-label" for="lastName">Last Name <span class="required">*</span></label>
+          <input type="text" th:object="${employee}" th:field="*{lastName}" required="required" />
+          
+          <label class="control-label" for="email">Email <span class="required">*</span></label>
+          <input type="text" th:object="${employee}" th:field="*{email}" required="required" />
+          
+          <label class="control-label" for="phoneNumber">Phone Number <span class="required">*</span></label>
+          <input type="text" th:object="${employee}" th:field="*{phoneNumber}" required="required" />
+          
+          <label class="control-label" for="salary">Salary <span class="required">*</span></label>
+          <input type="text" th:object="${employee}" th:field="*{salary}" required="required" />
+          
+          
+          <label class="control-label" for="manager">Location <span class="required">*</span></label>
+         <select th:field="*{department}" name="departmentId" onChange="onstatechange(this)" class="infobox">
+    <option th:each="department : ${departments}" th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
+</select>
+
+      
+      <input type="submit" value="send"/>
+      
+    <input type="hidden" th:field="*{employeeId}" />
+</form>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+</body>
+</html>

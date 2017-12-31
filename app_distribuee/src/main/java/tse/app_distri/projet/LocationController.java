@@ -14,6 +14,8 @@ public class LocationController {
 	
 	@Autowired
 	private LocationRepository locationRepository;
+	@Autowired
+	private CountryRepository countryRepository;
 	
 	@GetMapping(path="/list")
 	public String list(Model model){

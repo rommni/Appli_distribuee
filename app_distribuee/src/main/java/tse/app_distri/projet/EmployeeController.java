@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
+	private DepartmentRepository departmentRepository;
+
 
 	@GetMapping(path="/search")
 	public @ResponseBody Iterable<EmployeeDTO> getAllEmployee(@RequestParam String firstName){
@@ -65,5 +69,31 @@ public class EmployeeController {
 		Collections.sort(salaries);
 		model.addAttribute("salaries",salaries);
 		return "employee/salariesDecile";
+	}
+	
+	@GetMapping(path="/list")
+	public String list(Model model){
+		model.addAttribute("employees", employeeRepository.findAll());
+		return "employee/list";
+	}
+	
+	@GetMapping(path="/update")
+	public String update(Model model, @RequestParam long id){
+		model.addAttribute("employee", employeeRepository.findByEmployeeId(id));
+		model.addAttribute("departments", departmentRepository.findAll());
+		return "employee/update";
+	}
+	
+	@PostMapping(path="/update")
+	public String updateAction(@RequestParam long id,  Employee newEmployee ){
+		Employee employee = employeeRepository.findByEmployeeId(id);
+		employee.setFirstName(newEmployee.getFirstName());
+		employee.setLastName(newEmployee.getLastName());
+		employee.setEmail(newEmployee.getEmail());
+		employee.setPhoneNumber(newEmployee.getPhoneNumber());
+		employee.setSalary(newEmployee.getSalary());
+		employee.setDepartment(newEmployee.getDepartment());
+		employeeRepository.save(employee);
+		return "redirect:list";
 	}
 }
