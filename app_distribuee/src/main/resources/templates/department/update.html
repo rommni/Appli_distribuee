@@ -13,6 +13,10 @@
       
           <label class="control-label" for="departmentName">Department Name <span class="required">*</span></label>
           <input type="text" th:field="*{departmentName}" required="required" />
+          
+         <select th:field="*{location}" id="locationId" onChange="onstatechange(this)" class="infobox">
+    <option th:each="state : ${location}" th:value="${location.locationId}" th:text="${location.City}"></option>
+</select>
       
       <input type="submit" value="send"/>
       

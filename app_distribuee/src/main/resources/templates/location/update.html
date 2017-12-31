@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${'Edit - ' + location.city}"></title>
+<link rel="stylesheet"
+          href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<h1 th:text="${'Edit - ' + location.city}"></h1>
+
+<form action="#" th:action="@{#}" th:object="${location}" method="post">
+      
+          <label class="control-label" for="location">City Name <span class="required">*</span></label>
+          <input type="text" th:field="*{city}" required="required" />
+          
+          <label class="control-label" for="location">Postal Code <span class="required">*</span></label>
+          <input type="text" th:field="*{postalCode}" required="required" />
+          
+          <label class="control-label" for="location">Street Address <span class="required">*</span></label>
+          <input type="text" th:field="*{streetAddress}" required="required" />
+          
+          <label class="control-label" for="location">Country Region <span class="required">*</span></label>
+          <input type="text" th:field="*{stateProvince}" required="required" />
+         
+      
+      <input type="submit" value="send"/>
+      
+    <input type="hidden" th:field="*{locationId}" />
+</form>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+</body>
+</html>
